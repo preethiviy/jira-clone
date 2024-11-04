@@ -1,11 +1,13 @@
-"use client";
+import { getCurrent } from '@/features/auth/actions';
+import { SignUpCard } from '@/features/auth/components/sign-up-card';
+import { redirect } from 'next/navigation';
 
-import { SignUpCard } from "@/features/auth/components/sign-up-card"
+const SignUpPage = async () => {
+    const user = await getCurrent();
 
-const SignUpPage = () => {
-    return (
-        <SignUpCard />
-    )
-}
+    if (user) redirect('/');
 
-export default SignUpPage
+    return <SignUpCard />;
+};
+
+export default SignUpPage;
